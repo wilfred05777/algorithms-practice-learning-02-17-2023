@@ -1,3 +1,5 @@
+// https://chat.openai.com/chat/16e96cfb-b688-490d-8b36-9e70f35fe192
+
 // Given a year, return the century it is in. The first century spans from the year 1 up to and including the year 100, the second - from the year 101 up to and including the year 200, etc.
 
 // Example
@@ -39,10 +41,46 @@ function solution(year) {
     return century
   } else {
     // If the year is not a multiple of 100, we also return the century as is, since the current century ends at the end of the year that is not a multiple of 100
-    return century
+
+    // return century + getCenturySuffix(century)
+
+    const suffix = getCenturySuffix(century)
+    let ordinalNumber
+    if (suffix === 'st') {
+      ordinalNumber = 'st'
+    } else if (suffix === 'nd') {
+      ordinalNumber = 'nd'
+    } else if (suffix === 'rd') {
+      ordinalNumber = 'rd'
+    } else {
+      ordinalNumber = 'th'
+    }
+
+    const result = century + ordinalNumber + ' Century'
+    return result
+  }
+}
+
+function getCenturySuffix(century) {
+  const lastTwoDigits = century % 100
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
+    return 'th'
+  }
+
+  const lastDigit = lastTwoDigits % 10
+  switch (lastDigit) {
+    case 1:
+      return 'st'
+    case 2:
+      return 'nd'
+    case 3:
+      return 'rd'
+    default:
+      return 'th'
   }
 }
 
 // Example usage:
 console.log(solution(1905)) // Output: 20
-console.log(solution(1700)) // Output: 17
+console.log(solution(1305)) // Output: 20
+// console.log(solution(1700)) // Output: 17
