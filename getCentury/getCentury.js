@@ -65,12 +65,11 @@ function getCenturySuffix(century) {
   const lastTwoDigits = century % 100
   if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
     return 'th'
-
-  } 
-  //  bug if its 10-19 its not adding a suffix
-  else if (lastTwoDigits >= 14 && lastTwoDigits <= 19) {
-    return 'st'
   }
+  //  bug if its 10-19 its not adding a suffix
+  // else if (lastTwoDigits >= 14 && lastTwoDigits <= 19) {
+  //   return 'st'
+  // }
 
   const lastDigit = lastTwoDigits % 10
   switch (lastDigit) {
@@ -87,5 +86,8 @@ function getCenturySuffix(century) {
 
 // Example usage:
 console.log(solution(1905)) // Output: 20
-console.log(solution(1305)) // Output: 20
-console.log(solution(1700)) // Output: 17
+console.log(solution(201)) // Output: 20
+console.log(solution(200)) // Output: 20
+console.log(solution(1222)) // Output: 20
+console.log(solution(1401)) // Output: 20
+console.log(solution(1701)) // Output: 17
